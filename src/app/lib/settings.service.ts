@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Injectable, signal } from '@angular/core'
 
 const GOAL_KEY = 'run-quest:weekly-goal-km'
 
@@ -11,16 +11,18 @@ function readGoal(): number {
   }
 }
 
-/** Objectif hebdo en km = points de vie du boss de la semaine */
-export function useWeeklyGoal(): [number, (km: number) => void] {
-  const [goal, setGoal] = useState(readGoal)
-  const update = (km: number) => {
-    setGoal(km)
+@Injectable({ providedIn: 'root' })
+export class Settings {
+  readonly #goal = signal(readGoal())
+  /** Objectif hebdo en km = points de vie du boss de la semaine */
+  readonly weeklyGoal = this.#goal.asReadonly()
+
+  setWeeklyGoal(km: number) {
+    this.#goal.set(km)
     try {
       localStorage.setItem(GOAL_KEY, String(km))
     } catch {
       // stockage indisponible (navigation privée) : on garde la valeur en mémoire
     }
   }
-  return [goal, update]
 }

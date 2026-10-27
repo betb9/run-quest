@@ -1,6 +1,6 @@
 # ⚔️ Run Quest
 
-PWA qui transforme la course à pied en quête : XP et niveaux, boss hebdomadaires, conquête de la carte en hexagones
+PWA Angular qui transforme la course à pied en quête : XP et niveaux, boss hebdomadaires, conquête de la carte en hexagones
 et voyage de Cul-de-Sac à la Montagne du Destin avec des boss sur la route.
 
 - Import des courses en GPX (ex. export WorkoutDoors depuis l'Apple Watch) ou suivi GPS en direct (écran allumé)
@@ -9,9 +9,12 @@ et voyage de Cul-de-Sac à la Montagne du Destin avec des boss sur la route.
 
 ## Développement
 
+Nécessite Node.js ≥ 24.15 (ou 22.22.3+).
+
 ```bash
 npm install
-npm run dev
+npm run dev        # http://localhost:4200
+npm run build      # dist/run-quest/browser
 ```
 
 Un GPX de test est disponible dans `exemples/`.
